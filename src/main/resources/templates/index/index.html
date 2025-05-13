@@ -15,10 +15,25 @@
     <div class="visual-slider">
       <ul class="visual-list swiper-wrapper">
         <th:block th:each="visual: ${visualList}">
+          <!--
           <li
             class="swiper-slide"
             style="background-image: url('/upload/aaa.jpg')"
             th:style="'background-image: url(\'/upload/' + ${visual.renameVisual} + '\')'"
+          >
+            <div class="message">
+              <h2 th:text="${visual.mainMessage}">VISION YOU CAN FEEL</h2>
+              <p th:text="${visual.subMessage}">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
+                incidunt?
+              </p>
+            </div>
+          </li>
+        -->
+          <li
+            class="swiper-slide"
+            style="background-image: url('/upload/aaa.jpg')"
+            th:style="|background-image: url(/upload/${visual.renameVisual})|"
           >
             <div class="message">
               <h2 th:text="${visual.mainMessage}">VISION YOU CAN FEEL</h2>
