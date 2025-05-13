@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class VisualService {
 
     private final VisualRepository visualRepository;
 
-    public int saveVisual(VisualDto visualDto) {
+    public Visual saveVisual(VisualDto visualDto) {
         if(visualDto.getVisual()!=null) {
             String originalVisual = visualDto.getVisual().getOriginalFilename();
             String fileName =  originalVisual.substring(0,originalVisual.lastIndexOf("."));
@@ -38,14 +39,20 @@ public class VisualService {
             Path uploadPath = Paths.get(upload+"/"+fileName+"_"+renameDate+extention);
             try {
                 visualDto.getVisual().transferTo(uploadPath.toFile());    
+                visualDto.setOriginalVisual(originalVisual);
+                visualDto.setRenameVisual(fileName+"_"+renameDate+extention);
                 Visual visual = visualDto.toEntity(visualDto);
-                visualRepository.save(visual);
+                Visual savedVisual = visualRepository.save(visual);  //Visual
+                //return savedVisual.getId();
+                return savedVisual;
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        
-        return 0;
+        return null;
     }
 
+    public List<Visual> getAllList() {
+        return visualRepository.findAll();
+    }
 }

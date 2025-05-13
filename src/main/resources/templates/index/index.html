@@ -14,15 +14,22 @@
   <body>
     <div class="visual-slider">
       <ul class="visual-list swiper-wrapper">
-        <li class="visual01 swiper-slide">
-          <div class="message">
-            <h2>VISION YOU CAN FEEL</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-              incidunt?
-            </p>
-          </div>
-        </li>
+        <th:block th:each="visual: ${visualList}">
+          <li
+            class="swiper-slide"
+            style="background-image: url('/upload/aaa.jpg')"
+            th:style="'background-image: url(\'/upload/' + ${visual.renameVisual} + '\')'"
+          >
+            <div class="message">
+              <h2 th:text="${visual.mainMessage}">VISION YOU CAN FEEL</h2>
+              <p th:text="${visual.subMessage}">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
+                incidunt?
+              </p>
+            </div>
+          </li>
+        </th:block>
+        <!--
         <li class="visual02 swiper-slide">
           <div class="message">
             <h2>We Prove the Power of IR & SR</h2>
@@ -41,6 +48,7 @@
             </p>
           </div>
         </li>
+        -->
       </ul>
       <button class="prev btn">prev</button>
       <button class="next btn">next</button>
