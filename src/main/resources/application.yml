@@ -30,3 +30,6 @@ logging:
     org:
       hibernate:
         sql: debug
+
+file:
+  upload: C:/upload/

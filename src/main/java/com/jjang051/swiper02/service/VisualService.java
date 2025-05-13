@@ -1,5 +1,11 @@
 package com.jjang051.swiper02.service;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.jjang051.swiper02.dto.VisualDto;
@@ -14,11 +20,31 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class VisualService {
 
+    @Value("${file.upload}")
+    private String upload;
+
+
     private final VisualRepository visualRepository;
 
     public int saveVisual(VisualDto visualDto) {
-        Visual visual = visualDto.toEntity(visualDto);
-        visualRepository.save(visual);
+        if(visualDto.getVisual()!=null) {
+            String originalVisual = visualDto.getVisual().getOriginalFilename();
+            String fileName =  originalVisual.substring(0,originalVisual.lastIndexOf("."));
+            String extention =  originalVisual.substring(originalVisual.lastIndexOf("."));
+            log.info("originalVisual==={}",originalVisual);
+            LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+            String renameDate = now.format(formatter);
+            Path uploadPath = Paths.get(upload+"/"+fileName+"_"+renameDate+extention);
+            try {
+                visualDto.getVisual().transferTo(uploadPath.toFile());    
+                Visual visual = visualDto.toEntity(visualDto);
+                visualRepository.save(visual);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        
         return 0;
     }
 
