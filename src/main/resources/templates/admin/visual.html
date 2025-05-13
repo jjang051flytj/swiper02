@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="~{fragments/head::myHead('visual')}"></head>
+
+  <body>
+    <header th:replace="~{fragments/header}"></header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <h2 class="my-5">Visual</h2>
+          <!--mt-1~5 mb-1~5 my-1~5 -->
+          <form
+            class="row g-3"
+            action="/admin/visual"
+            method="post"
+            name=""
+            enctype="multipart/form-data"
+          >
+            <div class="col-12">
+              <label for="user-id" class="form-label fw-bold"
+                >Main Message</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="main-message"
+                placeholder="main message"
+                name="mainMessage"
+                value="main message"
+              />
+            </div>
+            <div class="col-12">
+              <label for="user-id" class="form-label fw-bold"
+                >Sub Message</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="sub-message"
+                placeholder="main message"
+                name="subMessage"
+                value="sub message"
+              />
+            </div>
+            <div class="col-12">
+              <label for="num" class="form-label fw-bold">순서</label>
+              <input
+                type="number"
+                class="form-control"
+                id="num"
+                placeholder="main message"
+                name="num"
+                value="보여질 순서"
+              />
+            </div>
+            <div class="col-12">
+              <label for="visual" class="form-label fw-bold">visual</label>
+              <input
+                type="file"
+                class="form-control"
+                id="visual"
+                placeholder="visual"
+                name="visual"
+              />
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" id="btn-signin">Cinfirm</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+    <footer th:replace="~{fragments/footer}"></footer>
+  </body>
+</html>

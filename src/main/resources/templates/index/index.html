@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="visual-slider">
+      <ul class="visual-list swiper-wrapper">
+        <li class="visual01 swiper-slide">
+          <div class="message">
+            <h2>VISION YOU CAN FEEL</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
+              incidunt?
+            </p>
+          </div>
+        </li>
+        <li class="visual02 swiper-slide">
+          <div class="message">
+            <h2>We Prove the Power of IR & SR</h2>
+            <p>
+              Lorem ipsu`m dolor sit amet consectetur adipisicing elit. Dolores,
+              a!
+            </p>
+          </div>
+        </li>
+        <li class="visual03 swiper-slide">
+          <div class="message">
+            <h2>Our Dream is Your Happiness</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error,
+              facere?
+            </p>
+          </div>
+        </li>
+      </ul>
+      <button class="prev btn">prev</button>
+      <button class="next btn">next</button>
+      <div class="pagination"></div>
+    </div>
+    <script>
+      const swiper = new Swiper(".visual-slider", {
+        loop: true,
+        speed: 1000,
+        autoplay: {
+          delay: 5000,
+        },
+        effect: "fade", //cube,
+        pagination: {
+          el: ".visual-slider .pagination",
+          type: "bullets",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".visual-slider .next",
+          prevEl: ".visual-slider .prev",
+        },
+      });
+    </script>
+  </body>
+</html>
